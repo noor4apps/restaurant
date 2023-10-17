@@ -13,6 +13,7 @@ export default {
             type: Object,
             required: true,
         },
+        errors: Object,
     },
     data() {
         return {
@@ -64,6 +65,7 @@ export default {
                             Code
                         </label>
                         <input v-model="form.code" class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="code" type="text">
+                        <div v-if="errors.code" class="text-red-600 text-xs">{{ errors.code }}</div>
                     </div>
                     <div class="w-full md:w-1/3 px-3">
                         <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="type">
@@ -74,12 +76,14 @@ export default {
                             <option value="category">Category</option>
                             <option value="item">Item</option>
                         </select>
+                        <div v-if="errors.type" class="text-red-600 text-xs">{{ errors.type }}</div>
                     </div>
                     <div class="w-full md:w-1/3 px-3">
                         <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="discount">
                             Discount
                         </label>
                         <input v-model="form.discount" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="discount" type="number" min="1">
+                        <div v-if="errors.discount" class="text-red-600 text-xs">{{ errors.discount }}</div>
                     </div>
                 </div>
                 <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
