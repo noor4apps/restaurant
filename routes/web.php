@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ApplyCouponController;
 use App\Http\Controllers\CouponController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\ProfileController;
@@ -28,6 +29,9 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('coupons', CouponController::class);
+
+    Route::get('/menus/{menu}/show', [ApplyCouponController::class, 'show'])->name('menus.show');
+    Route::patch('/menus/{menu}/coupons/{coupon}/apply', [ApplyCouponController::class, 'apply'])->name('coupons.apply');
     Route::resource('menus', MenuController::class);
 });
 

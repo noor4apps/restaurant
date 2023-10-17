@@ -61,6 +61,8 @@ export default {
                     </th>
                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     </th>
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    </th>
                 </tr>
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200 overflow-y-scroll">
@@ -82,6 +84,11 @@ export default {
                     </td>
                     <td class="px-6 py-4">
                         <div class="text-sm text-gray-900">{{ menu.coupon?.code }}</div>
+                    </td>
+                    <td class="px-6 py-4">
+                        <Link :href="`/menus/${menu.id}/show`" class="ml-4 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+                            Show
+                        </Link>
                     </td>
                     <td class="px-6 py-4">
                         <button @click="remove(menu)" class="bg-transparent hover:bg-red-500 text-red-700 hover:text-white py-2 px-4 border border-red-500 hover:border-transparent rounded" type="button">

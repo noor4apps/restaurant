@@ -34,7 +34,7 @@ export default {
             id: this.model.menu.id,
             name: this.model.menu.name,
             type: this.model.menu.type,
-            menu_id: this.model.menu.menu.id,
+            menu_id: this.model.menu.menu?.id,
             price: this.model.menu.price,
         }
     },
