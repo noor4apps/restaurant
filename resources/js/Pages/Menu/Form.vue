@@ -13,7 +13,8 @@ export default {
             type: Object,
             required: true,
         },
-        errors: Object
+        errors: Object,
+        flash: Object,
     },
     data() {
         return {
@@ -58,6 +59,10 @@ export default {
                 New Menus
             </h2>
         </template>
+        <div v-if="flash.message" class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert" id="alert-message">
+            <span class="block sm:inline">{{ flash.message }}</span>
+        </div>
+
         <div class="py-12 max-w-7xl">
             <form class="w-full max-w-lg mx-auto" @submit.prevent="submit">
                 <div class="flex flex-wrap -mx-3 mb-6">

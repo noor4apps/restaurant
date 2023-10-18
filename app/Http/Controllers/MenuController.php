@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Actions\Menu\DeleteMenuAction;
 use App\Actions\Menu\UpsertMenuAction;
 use App\DataTransferObjects\Menu\MenuData;
+use App\Exceptions\CannotAddNodeException;
 use App\Models\Menu;
 use App\ViewModels\Menu\GetMenuViewModel;
 use App\ViewModels\Menu\UpsertMenuViewModel;
@@ -32,7 +33,12 @@ class MenuController extends Controller
 
     public function store(MenuData $data, Request $request): RedirectResponse
     {
-        UpsertMenuAction::execut($data, $request->user());
+        try {
+            UpsertMenuAction::execut($data, $request->user());
+        } catch (CannotAddNodeException $e) {
+
+            return Redirect::back()->with('message', $e->getMessage());
+        }
 
         return Redirect::route('menus.index');
     }
@@ -46,7 +52,12 @@ class MenuController extends Controller
 
     public function update(MenuData $data, Request $request): RedirectResponse
     {
-        UpsertMenuAction::execut($data, $request->user());
+        try {
+            UpsertMenuAction::execut($data, $request->user());
+        } catch (CannotAddNodeException $e) {
+
+            return Redirect::back()->with('message', $e->getMessage());
+        }
 
         return Redirect::route('menus.index');
     }
