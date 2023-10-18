@@ -83,15 +83,26 @@ export default {
                         </select>
                         <div v-if="errors.type" class="text-red-600 text-xs">{{ errors.type }}</div>
                     </div>
-                    <div class="w-full md:w-1/3 px-3">
+                    <div v-if="form.type == 'category'" class="w-full md:w-1/3 px-3">
                         <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="category">
-                            Category
+                            Parent
                         </label>
                         <select v-model="form.menu_id" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="category">
-                            <option :value="menu.id" v-for="menu in model.menus" :key="menu.id">{{ menu.name }}</option>
+                            <option :value="category.id" v-for="category in model.categories" :key="category.id">{{ category.name }}</option>
                         </select>
                         <div v-if="errors.menu_id" class="text-red-600 text-xs">{{ errors.menu_id }}</div>
                     </div>
+                    <div v-if="form.type == 'item'" class="w-full md:w-1/3 px-3">
+                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="category">
+                            Parent
+                        </label>
+                        <select v-model="form.menu_id" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="category">
+                            <option :value="item.id" v-for="item in model.items" :key="item.id">{{ item.name }}</option>
+                        </select>
+                        <div v-if="errors.menu_id" class="text-red-600 text-xs">{{ errors.menu_id }}</div>
+                    </div>
+                </div>
+                <div class="flex flex-wrap -mx-3 mb-6">
                     <div class="w-full md:w-1/3 px-3">
                         <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="price">
                             Price

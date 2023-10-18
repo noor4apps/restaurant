@@ -24,8 +24,19 @@ class UpsertMenuViewModel extends ViewModel
         return $this->menu->load('menu')->getData();
     }
 
-    public function menus(): Collection
+    public function categories(): Collection
     {
-        return Menu::all()->map->getData();
+        return Menu::whereType(MenuTypes::Category)->get()->map->getData();
+    }
+
+    public function items(): Collection
+    {
+
+        return Menu::query()
+            ->whereType(MenuTypes::Category)
+            ->doesntHave('children')
+            ->orWhereHas('children', function ($query) {
+                $query->where('type', 'item');
+            })->get()->map->getData();
     }
 }

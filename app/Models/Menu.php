@@ -9,6 +9,7 @@ use App\ValueObject\Discount;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Spatie\LaravelData\WithData;
 
 class Menu extends Model
@@ -36,6 +37,11 @@ class Menu extends Model
     public function menu(): BelongsTo
     {
         return $this->belongsTo(self::class, 'menu_id');
+    }
+
+    public function children(): HasMany
+    {
+        return $this->hasMany(self::class, 'menu_id', 'id');
     }
 
     public function coupon(): BelongsTo
